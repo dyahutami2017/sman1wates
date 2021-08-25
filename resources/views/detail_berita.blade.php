@@ -101,6 +101,9 @@
                                         <a class="page-scroll" href="#contact">Follow Us</a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="page-scroll" href="/profil_sma">Profil</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a class="page-scroll" href="/login">Login</a>
                                     </li>
                                     <li class="nav-item">
