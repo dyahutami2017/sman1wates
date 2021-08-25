@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{asset('img/logosma1.png')}}" type="image/png">
 </head>
 <body  style="background-image: url('images/bg-auth.jpg')">
     <div id="app">

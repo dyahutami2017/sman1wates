@@ -15,6 +15,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('AdminLTE-3.1.0/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('AdminLTE-3.1.0/dist/css/adminlte.min.css')}}">
+  <link rel="shortcut icon" href="{{asset('img/logosma1.png')}}" type="image/png">
   <style>
       #tbl_siswa th:first-child {
         border-top-left-radius: 10px;

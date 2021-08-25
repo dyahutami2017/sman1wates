@@ -273,7 +273,7 @@
                                     <li><a href="#"><img
                                                 src="/landing-page/images/telegram-filled.svg" alt="telegram"
                                                 style="width:20px"><span></span> <span>t.me/sman1wates</span></a></li>
-                                    <li><a href="/"><img src="/landing-page/images/global.svg" alt="perpus-stewa"
+                                    <li><a href="/"><img src="/landing-page/images/global.svg" alt=""
                                                 style="width:20px"><span></span> <span>www.sman1wates.com</span></a>
                                     </li>
                                     <li class=""><span class="text-white">Jl. Terbahsari No.1, Terbah, Wates, Kabupaten Kulon Progo, Daerah Istimewa Yogyakarta 55651</span></li>
