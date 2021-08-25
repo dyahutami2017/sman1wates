@@ -1,14 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use App\Siswa;
 use App\User;
-use DB;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
-class SiswaController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +14,12 @@ class SiswaController extends Controller
     public function index(Request $request)
     {
         if ($request->has('cari')) {
-            $data_siswa = \App\Siswa::where('nama', 'LIKE', '%' . $request->cari . '%')->get();
+            $data_admin = \App\User::where('role','admin')
+                        ->where('name', 'LIKE', '%' . $request->cari . '%')->get();
         } else {
-            $data_siswa = \App\Siswa::all();
+            $data_admin = \App\User::where('role','admin')->get();
         }
-        return view('siswa.index', ['data_siswa' => $data_siswa]);
+        return view('admin.index', ['data_admin' => $data_admin]);
     }
 
     /**
@@ -65,8 +62,8 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
-        $siswa = \App\Siswa::find($id);
-        return view('siswa.edit', ['siswa' => $siswa]);
+        $admin = \App\User::find($id);
+        return view('admin.edit', ['admin' => $admin]);
     }
 
     /**
@@ -78,15 +75,12 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $siswa = \App\Siswa::find($id);
-        $siswa->update($request->all());
- 
-        if (Auth::check() && (Auth::user()->role == 'admin')) {
-            return redirect('/siswa');
-        }
-        else{
-            return view('siswa.profile', ['siswa' => $siswa]);
-        }
+        $admin = \App\User::find($id);
+        $admin->update([
+            'name'=>$request->nama,
+            'email'=>$request->email,
+        ]);
+       return redirect('/admin');
     }
 
     /**
@@ -97,27 +91,25 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        $siswa= \App\Siswa::where('id', $id)->delete();
-        return redirect('/siswa');
+        $admin= \App\User::where('id', $id)->delete();
+        return redirect('/admin');
     }
 
     public function profile($id)
     {
         // dd($request->all());
 
-        $siswa = \App\Siswa::find($id);
-        return view('siswa.profile', ['siswa' => $siswa]);
+        $admin = \App\User::find($id);
+        return view('admin.profile', ['admin' => $admin]);
     }
-
-    public function editProfile($id)
-    {
-        $siswa = \App\Siswa::where('user_id', $id)->first();
-        return view('siswa.edit', ['siswa' => $siswa]);
-    }
-
     public function profilSaya($id)
     {
-        $siswa = \App\Siswa::where('user_id', $id)->first();
-        return view('siswa.profile', ['siswa' => $siswa]);
+        $admin = \App\User::where('id', $id)->first();
+        return view('admin.profile', ['admin' => $admin]);
+    }
+    public function editProfile($id)
+    {
+        $admin = \App\User::where('id', $id)->first();
+        return view('admin.edit', ['admin' => $admin]);
     }
 }

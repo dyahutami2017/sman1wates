@@ -12,7 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -73,8 +73,8 @@
         </nav>
         
         <main class="py-4">
-        <h1 class="text-center text-light">SELAMAT DATANG DI</h1>
-        <h2 class="text-center text-light">SISTEM INFORMASI SMA N 1 WATES</h2>
+            <h1 class="text-center text-light">SELAMAT DATANG DI</h1>
+            <h2 class="text-center text-light">SISTEM INFORMASI SMA N 1 WATES</h2>
             @yield('content')
         </main>
     </div>

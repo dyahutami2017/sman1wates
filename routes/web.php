@@ -70,6 +70,17 @@ Route::get('/profil_sma', function () {
         
 });
 
+Route::get('/admin', 'UserController@index');
+Route::get('/admin/{id}/edit','UserController@edit');
+Route::post('/admin/{id}/update', 'UserController@update');
+Route::get('/admin/{id}/delete', 'UserController@destroy');
+Route::get('/admin/{id}/profile', 'UserController@profile');
+Route::get('/profil_admin/{id}', 'UserController@profilSaya');
+Route::get('/profil_admin/{id}/edit', 'UserController@editProfile');
+
+
+
+
 
 
 

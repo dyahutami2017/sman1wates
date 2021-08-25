@@ -24,7 +24,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        @if(Auth::user()->name == 'admin')
+        @if(Auth::user()->role == 'admin')
         <li class="nav-item">
             <a href="/home" class="nav-link">
               <i class="nav-icon fa fa-home" aria-hidden="true"></i>
@@ -46,6 +46,14 @@
               <i class="nav-icon fa fa-users"></i>
               <p>
                 Siswa
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/admin" class="nav-link">
+              <i class="nav-icon fa fa-users"></i>
+              <p>
+                Admin Sekolah
               </p>
             </a>
           </li>
@@ -82,6 +90,18 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/profil_admin/{{auth()->user()->id}}" class="nav-link">
+                <i class="fas fa-user-check"></i>
+                  <p>Profil Saya</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/profil_admin/{{auth()->user()->id}}/edit" class="nav-link">
+                  <i class="far fas fa-user-cog"></i>
+                  <p>Edit Profil</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="{{ url()->route('logout') }}" class="nav-link">
                 <i class="fas fa-sign-out-alt"></i>

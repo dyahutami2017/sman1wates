@@ -55,8 +55,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'kelas' => 'required',
-            'jurusan' => 'required',
+
         ]);
     }
 
@@ -69,22 +68,34 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
        
+        if($data['role'] == 'admin'){
+            $user = User::create([
+                'name' => $data['name'],
+                'role' => $data['role'],
+                'email' => $data['email'],
+                'kelas' => '0',
+                'jurusan' => 'x',
+                'password' => Hash::make($data['password']),
+            ]);
+        }
+        else{
+            $user = User::create([
+                'name' => $data['name'],
+                'role' => $data['role'],
+                'email' => $data['email'],
+                'kelas' => $data['kelas'],
+                'jurusan' => $data['jurusan'],
+                'password' => Hash::make($data['password']),
+            ]);
 
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'kelas' => $data['kelas'],
-            'jurusan' => $data['jurusan'],
-            'password' => Hash::make($data['password']),
-        ]);
-
-        Siswa::create([
-            'user_id' => $user ->id,
-            'nama' =>$data['name'],
-            'email' =>$data['email'],
-            'kelas' =>$data['kelas'],
-            'jurusan' =>$data['jurusan'],
-        ]);
+            Siswa::create([
+                'user_id' => $user ->id,
+                'nama' =>$data['name'],
+                'email' =>$data['email'],
+                'kelas' =>$data['kelas'],
+                'jurusan' =>$data['jurusan'],
+            ]);
+        }
         Mail::to($data['email'])->send(new WelcomeMail($user));
         return $user;
     }

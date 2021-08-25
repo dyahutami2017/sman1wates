@@ -13,7 +13,7 @@
                                     <input type="text" name="cari" value="" class="form-control" placeholder="Nama Mata Pelajaran">
                                     <span class="input-group-btn"><button type="submit" value="cari" class="btn btn-info btn-lg"><i class="fa fa-search" aria-hidden="true"></i></button></span>
                                 </div>
-                                @if((auth()->user()->name == 'admin'))
+                                @if((auth()->user()->role == 'admin'))
                                 <div class="col-md-6 text-right">
                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-plus mr-2"></i>Tambah data</button>
                                 </div>

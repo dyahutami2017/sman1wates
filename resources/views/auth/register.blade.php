@@ -8,9 +8,22 @@
                 <div class="card-header bg-info">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
+                    <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}" novalidate>
                         @csrf
-
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Status') }}</label>
+                            <div class="col-md-6">
+                                <select name="role" id="role" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" required>
+                                    <option value="siswa" selected>Siswa</option>    
+                                    <option value="admin">Admin Sekolah</option>
+                                </select>
+                                @if ($errors->has('role'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('role') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nama') }}</label>
 
@@ -38,8 +51,8 @@
                                 @endif
                             </div>
                         </div>
-
-                        <div class="form-group row">
+                        
+                        <div class="form-group row" id="kelas_siswa">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Kelas') }}</label>
 
                             <div class="col-md-6">
@@ -57,7 +70,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row"  id="jurusan_siswa"> 
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Jurusan') }}</label>
 
                             <div class="col-md-6">
@@ -109,4 +122,18 @@
         </div>
     </div>
 </div>
+<script type="application/javascript">
+    $(document).ready(function () {
+        $("#role").change(function () {
+                if ($(this).val() != 'admin') {
+                    $("#kelas_siswa").removeAttr('hidden');
+                    $("#jurusan_siswa").removeAttr('hidden');
+                }
+                else {
+                    $("#kelas_siswa").attr('hidden','hidden');
+                    $("#jurusan_siswa").attr('hidden','hidden');
+                }
+            });
+    })
+</script>
 @endsection
